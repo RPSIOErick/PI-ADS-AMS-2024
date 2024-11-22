@@ -1,0 +1,46 @@
+.container_button
+{
+    /*Position*/
+        padding: 3em 0em;
+        display: flex;
+        justify-content: center;
+}
+.black_button
+{
+    /*Background*/
+        background-color: var(--color-2);
+
+    /*Padding*/
+        padding-left: 0.99em;
+        padding-right: 0.99em;
+        padding-top: 0.06em;
+        padding-bottom: 0.06em;
+
+    /*Size*/
+        width: fit-content;
+        height: fit-content;
+
+    /*Backgrounmd*/
+        background-color: var(--color-1);
+
+    /*Text*/
+        color: white;
+        font-size: var(--px-27);
+
+    /*Size*/
+        padding-left: 1.7em;
+        padding-right: 1.7em;
+        padding-top: 0.33em;
+        padding-bottom: 0.33em;
+
+    /*Border*/
+        border-radius: 1em;
+        border: 0;
+}
+
+.black_button a
+{
+    /*Text*/
+        text-decoration: none;
+        color: white;
+}

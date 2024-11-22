@@ -1,0 +1,149 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+
+
+/*Variaveis*/
+    :root
+    {
+        --color-1: #2E2E2E;
+        --color-2: #707070;
+        --color-3: #D9D9D9;
+        --color-4: #6a6a6a;
+        --color-5: #989898;
+        --color-6: #EFECEC;
+        --color-7: #121212;
+        --color-8: #CACACA;
+        --color-base: #F2F2F2;
+        --px-13: 0.8125rem;
+        --px-16: 1rem;
+        --px-20: 1.25rem;
+        --px-23: 1.4375rem;
+        --px-27: 1.6875rem;
+        --px-30: 1.875rem;
+        --px-40: 2.5rem;
+        --shadow-figma: 0em 0.25em 0.25em rgba(0, 0, 0, 0.25);
+    }
+    .container-main
+    {
+        /*Position*/
+            padding: 1em 2.5em;
+
+            display: flex;
+            justify-content: center;
+    }
+    .col-main
+    {
+        width: 100%;
+    }
+
+    /*Padrões Input*/
+        .container_input
+        {
+            padding-top: 1em;
+            padding-bottom: 1em;
+        }
+        .textinput_label
+        {
+            /*Text*/
+                font-family: "Lato", sans-serif;
+                font-size: var(--px-20);
+                font-weight: bold;
+        
+            /*Position*/
+                margin-bottom: 0.5em;
+                margin-left: 1em;
+        }
+        .text_input
+        {
+            /*Text*/
+                font-family: "Lato", sans-serif;
+                font-size: var(--px-20);
+        
+            /*Background*/
+                background-color: var(--color-3);
+                
+            /*Size*/
+                width: 100%;
+                resize: none;
+        
+            /*Border*/
+                border: 0;
+                border-radius: 1em;
+                box-shadow: var(--shadow-figma);
+        
+            /*Padding*/
+                padding: 1em;
+        }
+
+        /*Multiform*/
+        .container-large
+        {
+            /*Position*/
+                position: relative;
+
+                margin: 1em -2.5em;
+        }
+        /*Multiform*/
+        .multiform
+        {
+            /*Position*/
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(4.5em, 1fr));
+        }
+
+        /*Botão Base*/
+            .multiform-btn 
+            {
+                /*Position*/
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    flex-direction: column;
+
+                /*Padding*/
+                    padding-top: 0.67em;
+                    padding-bottom: 0.67em;
+
+            }
+
+        /*Icone*/
+            .multiform-icon
+            {
+                /*Text*/
+                    font-size: 2.35rem;
+            }
+
+        /*Titulo da Seção*/
+            .multiform-btn p
+            {
+                /*Text*/
+                    text-align: center;
+                    font-size: 0.7em;
+
+                    margin-top: 0.5em;
+                    margin-bottom: 0;
+            }
+
+        /*Botão Ativo*/
+            .multiform-active
+            {
+                /*Background*/
+                    background-color: var(--color-1);
+
+                /*Color*/
+                    color: white;
+            }
+        
+        /*Botão Desativado*/
+            .multiform-disable
+            {
+                /*Background*/
+                    background-color: var(--color-3);
+            }
+
+    /*Fim do Multiform*/
+    .container-cards-home
+    {
+        padding-top: 5em;
+
+        
+    }

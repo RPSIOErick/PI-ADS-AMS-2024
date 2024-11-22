@@ -1,0 +1,8 @@
+.main_link
+{
+    /*Text*/
+        font-family: "Lato", sans-serif;
+        font-size: var(--px-23);
+        text-decoration: none;
+        color: var(--color-4);
+}

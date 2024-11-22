@@ -1,0 +1,170 @@
+.read-card-close
+{
+    /*background*/
+        background-color: var(--color-8);
+
+    /*Size*/
+        padding-left: 1.5em;
+        padding-right: 1.5em;
+        padding-top: 1em;
+
+    /*Border*/
+        border-radius: 0.75em;
+        box-shadow: var( --shadow-figma);
+
+    /*Position*/
+        margin-bottom: 2em;
+}
+.read-card-close .container-crudActions
+{
+    /*Visibility*/
+        display: none;
+}
+.read-card-close .btn-read
+{
+    /*Visibility*/
+        display: none;   
+}
+.read-card-close li
+{
+    /*Visibility*/
+        display: none;
+}
+.read-card-close .firstItem-cardRead
+{
+    /*Visibility*/
+        display: block;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+        width: 45vw;
+}
+.btn-verMais
+{
+    /*Background*/
+        background-color: var(--color-1);
+
+    /*Border*/
+        border: 0;
+        border-radius: 0.5em;
+
+    /*Text*/
+        font-size: var(--px-13);
+        font-family: "Lato", sans-serif;
+        color: white;
+        text-transform: uppercase;
+
+    /*Size*/
+        width: fit-content;
+        height: fit-content;
+        padding-top: 0.75em;
+        padding-bottom: 0.75em;
+        padding-left: 1.194em;
+        padding-right: 1.194em;
+        
+}
+/**********************************************************************/
+.read-card-open .btn-verMais
+{
+    display: none;
+}
+.read-card-open
+{
+    /*background*/
+        background-color: var(--color-8);
+
+    /*Size*/
+        padding: 1.5em;
+
+    /*Border*/
+        border-radius: 0.75em;
+        box-shadow: var( --shadow-figma);
+
+    /*Position*/
+        margin-bottom: 2em;
+}
+.header-readCard
+{
+    /*Position*/
+        display: flex;
+        justify-content: space-between;
+}
+.items-cardRead
+{
+    /*List*/
+        list-style-type: none;
+
+    /*Position*/
+        padding-left: 0;
+}
+
+.items-cardRead li
+{
+    /*Text*/
+        font-size: var(--px-23);
+        font-family: "Lato", sans-serif;
+        
+}
+.firstItem-cardRead
+{
+    /*Text*/
+        font-weight: bold;
+}
+.btn-read
+{
+    /*Background*/
+        background-color: var(--color-base);
+
+    /*Border*/
+        border: 0;
+        border-radius: 1em;
+
+    /*Text*/
+        font-size: var(--px-16);
+        font-family: "Lato", sans-serif;
+
+    /*Size*/
+        padding-top: 0.782em;
+        padding-bottom: 0.782em;
+        padding-left: 0.6852em;
+        padding-right: 0.6852em;
+}
+.read-card-open .container-crudActions
+{
+    /*Position*/
+        display: flex;
+        flex-direction: column;
+        gap: 1em;
+}
+.btn-crudActions
+{
+    /*Size*/
+        width: 100%;
+        padding-top: 0.25em;
+        padding-bottom: 0.25em;
+    
+    /*Border*/
+        border: 0;
+        border-radius: 0.75em;
+
+    /*Text*/
+        font-size: var(--px-23);
+        font-family: "Lato", sans-serif;
+        color: white;
+
+    /*Position*/
+        position: relative;
+}
+.btn-crudActions img
+{
+    /*Size*/
+        width: var(--px-23);
+
+    /*Position*/
+        position: absolute;
+        top: 50%;
+        left: 1.5em;
+        transform: translateY(-50%);
+}
+.btn-update {background-color: var(--color-2);}
+.btn-delete {background-color: var(--color-1);}

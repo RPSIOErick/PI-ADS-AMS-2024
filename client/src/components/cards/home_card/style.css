@@ -1,0 +1,32 @@
+.card-home
+{
+    background-color: var(--color-1);
+
+
+    color: white;
+    border-radius: 1em;
+
+    width: 60%;
+    height: fit-content;
+
+   padding: 2em;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 0.5em;
+
+    margin-bottom: 1em;
+
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+
+}
+.container-cards-home a
+{
+    font-family: "Lato", sans-serif;
+    font-size: var(--px-23);
+    text-decoration: none;
+}
