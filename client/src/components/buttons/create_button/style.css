@@ -1,0 +1,52 @@
+.container-button-create
+{
+    /*Position*/
+        position: fixed;
+        bottom: 3.5em;
+        right: 0;
+
+        padding-right: 1.5em;
+}
+.create_button 
+{
+    /*Background*/
+        background-color: var(--color-7);
+
+    /*Position*/
+        padding-top: 0.663em; /*For 59px in template resolution*/
+        padding-bottom: 0.663em;
+        padding-left: 0.788em;
+        padding-right: 0.788em;
+        float: right;
+
+    /*Border*/
+        border: 0;
+        border-radius: 1em;
+
+    /*Size*/
+        width: fit-content;
+        height: fit-content;
+
+}
+.create_button img
+{
+    /*Size*/
+        width: var(--px-20);
+
+    /*Position*/
+        margin-right: 0.5em;
+}
+
+.create_button a
+{
+    /*Text*/
+        font-family: "Lato", sans-serif;
+        font-size: var(--px-23);
+        text-decoration: none;
+        color: white;
+
+    /*Position*/
+        display: flex;
+        justify-content: center;
+        align-items: center;
+}

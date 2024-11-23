@@ -1,0 +1,40 @@
+.container_inputfile
+{
+    padding-top: 1em;
+    padding-bottom: 1em;
+
+    width: 100%;
+}
+
+.add_button 
+{
+    /*Background*/
+        background-color: var(--color-3);
+
+    /*Position*/
+        padding: 1.875em; /*For 100px in template resolution*/
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        position: relative;
+        left: 50%;
+        transform: translateX(-50%);
+
+        margin-top: 1em;
+
+    /*Size*/
+        width: fit-content;
+        height: fit-content;
+}
+.add_button img
+{
+    /*Size*/
+        width: var(--px-40);
+}
+.add_input
+{
+    /*Visibility*/
+        display: none;
+}

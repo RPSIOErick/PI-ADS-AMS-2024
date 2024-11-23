@@ -1,0 +1,32 @@
+.back_button
+{
+    /*Background*/
+        background-color: var(--color-2);
+
+    /*Position*/
+        padding-left: 1.125em;
+        padding-right: 1.125em;
+        padding-top: 0.532em;
+        padding-bottom: 0.532em;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+    /*Size*/
+        width: fit-content;
+        height: fit-content;
+
+    /*Position*/
+        position: relative;
+        margin-top: 5em;
+
+    /*Border*/
+        border-radius: 0.2em;
+        border: 0;
+}
+.back_button img
+{
+    /*Size*/
+        width: var(--px-20);
+}
