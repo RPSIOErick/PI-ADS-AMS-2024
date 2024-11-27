@@ -10,6 +10,6 @@ import Home_card from '../components/cards/home_card/component.vue';
         <Home_card nome="Disciplinas" link="/disciplinas" />
         <Home_card nome="Cursos" link="/cursos" />
         <Home_card nome="Turmas" link="/turmas" />
-        <Home_card nome="Tarefas" link="/tarefas" />
+        <Home_card nome="Tarefas" link="/tarefa" />
     </div>
 </template>

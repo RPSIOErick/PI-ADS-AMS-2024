@@ -235,44 +235,28 @@ const routes =
     },
   /*End of course: Curso*/
   
-  /*task: Tarefas*/
-    {
-      path: '/tarefas',
-      name: 'Tarefas',
-      component: () => import('../views/task/ReadView.vue'),
-      beforeEnter(to, from, next) 
-      {
-        checkAuthorization(to, from, next, ['Aluno', 'Representante', 'Responsável', 'Administrador'])
-      }
-    },
-    {
-      path: '/tarefa',
-      name: 'Tarefa',
-      component: () => import('../views/task/ReadOneView.vue'),
-      beforeEnter(to, from, next) 
-      {
-        checkAuthorization(to, from, next, ['Aluno', 'Representante', 'Responsável', 'Administrador'])
-      }
-    },
-    {
-      path: '/tarefa/criar',
-      name: 'Nova-Tarefa',
-      component: () => import('../views/task/CreateView.vue'),
-      beforeEnter(to, from, next) 
-      {
-        checkAuthorization(to, from, next, ['Responsável', 'Administrador'])
-      }
-    },
-    {
-      path: '/tarefa/editar',
-      name: 'Editar-Tarefa',
-      component: () => import('../views/task/UpdateView.vue'),
-      beforeEnter(to, from, next) 
-      {
-        checkAuthorization(to, from, next, ['Responsável', 'Administrador'])
-      }
-    },
-  /*End of task: Tarefas*/
+/*task: Tarefas*/
+{
+  path: '/tarefa',
+  name: 'Tarefa',
+  component: () => import('../views/task/ReadView.vue'),
+},
+{
+  path: '/tarefas/:id',
+  name: 'tarefa',
+  component: () => import('../views/task/ReadOneView.vue'),
+},
+{
+  path: '/tarefa/criar',
+  name: 'Novo-Curso',
+  component: () => import('../views/task/CreateView.vue'),
+},
+{
+  path: '/tarefas/editar/:id',
+  name: 'Editar-Tarefa',
+  component: () => import('../views/task/UpdateView.vue'),
+},
+/*End of task: Tarefas*/
   ],
 }
 const router = createRouter(routes)

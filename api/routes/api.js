@@ -10,6 +10,9 @@ const professorController = require('../controllers/professorController')
 const cursoController = require('../controllers/cursoController')
 const turmaController = require('../controllers/turmaController')
 const authController = require('../controllers/authController')
+const inscricaoController = require('../controllers/inscricaoController')
+const permissaoController = require('../controllers/permissaoController')
+const tarefasController = require('../controllers/tarefasController')
 
 // Import Middleware
 const { verifyToken } = require('../middlewares/auth')
@@ -69,6 +72,7 @@ router.put('/curso/status/:id', cursoController.changeStatusCurso)
 router.get('/curso/read/:id', cursoController.readUniCurso)
 
 //Routes - Turma
+//Routes - Turma
 router.post('/turma/upload', upload.single('csv'), turmaController.readTurmaFile)
 
 router.post('/turma/create', turmaController.createTurma)
@@ -86,6 +90,35 @@ router.post('/professor/register', authController.createProfessor)
 router.post('/professor/login', authController.loginProfessor)
 
 router.post('/aluno/login', authController.loginAluno)
+
+//Routes - Inscricao
+
+router.delete('/inscricao/delete/:ID_Inscricao', inscricaoController.deleteInscricao)
+
+router.post('/inscricao/create', inscricaoController.createInscricao)
+
+router.get('/inscricao/read', inscricaoController.readInscricao)
+
+
+//Routes - Permissão
+
+router.delete('/permissao/delete/:ID_Permissao', permissaoController.deletePermissao)
+
+router.post('/permissao/create', permissaoController.createPermissao)
+
+router.get('/permissao/read', permissaoController.readPermissao)
+
+//Routes - Tarefas
+
+// router.post('/tarefa/create', tarefasController.createTarefas)
+
+// router.get('/tarefa/read', tarefasController.readTarefas)
+
+// router.put('/tarefa/update/:id', tarefasController.updateTarefas)
+
+// router.delete('/permissao/delete/:ID_Tarefa', tarefasController.deleteTarefas)
+
+// router.get('/tarefa/read/:ID_Tarefa', tarefasController.readUniTarefas)
 
 // Export Module
 module.exports = router;

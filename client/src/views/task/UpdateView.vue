@@ -1,91 +1,146 @@
 <script setup>
 import { ref, onMounted } from 'vue';
-import { processData, updateData } from '../../../public/js/utils';
-import { tbl_professor } from '@/models/tbl_professor';
-import { tbl_disciplinas } from '@/models/tbl_disciplina';
-import { useRoute } from 'vue-router';
+import { createData, processData } from '../../../public/js/utils';
 
 import H1_T from '../../components/text_components/h1_title/component.vue';
-import Text_input from '../../components/inputs/text_inputUpdate/component.vue';
+import H2_T from '../../components/text_components/h2_title/component.vue';
+import Text from '../../components/text_components/text/component.vue';
+import Link from '../../components/text_components/link/component.vue';
+
+import Text_input from '../../components/inputs/text_input/component.vue';
+import Text_area from '../../components/inputs/text_area/component.vue';
+import File_input from '../../components/inputs/file_input/component.vue';
+import Select_input from '../../components/inputs/select_input/component.vue';
+import DateInput from '../../components/inputs/date_input/component.vue'; 
+import TimeInput from '../../components/inputs/time_input/component.vue'; 
+
 import Black_button from '../../components/buttons/black_button/component.vue';
-import Select_input from '../../components/inputs/select_inputUpdate/component.vue';
 import Back_button from '../../components/buttons/back_button/component.vue';
-import router from '@/router';
 import { toast } from 'vue3-toastify';
+import router from '@/router';
 
-const route = useRoute();
+const Nome_Tarefa = ref('');
+const Cod_Tarefa = ref('');
+const Date_lancamento = ref('');
+const Date_entrega = ref('');
+const Hora_lancamento = ref('');
+const Hora_entrega = ref('');
 
-const disciplina = ref({});
-const professores = ref([]); 
-const id_disciplina = ref(''); 
-const nome_disciplina = ref('');
-const id_professor = ref('');
+const activeForm = ref('importFile');
 
-onMounted(async () => 
-{
-  let id = window.localStorage.getItem('id')
-  try 
-  {
-    professores.value = await processData("http://localhost:8080/api/professor/read", tbl_professor);
-    disciplina.value = await processData(`http://localhost:8080/api/disciplinas/read/${id}`, tbl_disciplinas);
-    
-    id_disciplina.value = disciplina.value.ID_Disc; 
-    nome_disciplina.value = disciplina.value.Nome_Disc; 
-    id_professor.value = disciplina.value.ID_Prof; 
-  } 
-  catch (error)
-  {
-      toast.error(error);
-  }
-});
+const toggleForm = (formName) => {
+    activeForm.value = formName;
+};
 
-async function handleSubmit() 
-{
-  
-  try
-  {
-    const dataSend = {
-      ID_Disc: id_disciplina.value,
-      ID_Prof: id_professor.value,
-      Nome_Disc: nome_disciplina.value,
+// Função para enviar os dados do formulário para o back-end
+const handleSubmit = async () => {
+    const tarefaData = {
+        Nome: Nome_Tarefa.value,
+        Descricao: Cod_Tarefa.value,
+        DataLancamento: Date_lancamento.value,
+        HoraLancamento: Hora_lancamento.value,
+        DataEntrega: Date_entrega.value,
+        HoraEntrega: Hora_entrega.value
     };
-    await updateData(`http://localhost:8080/api/disciplinas/update/${id_disciplina.value}`, dataSend);
 
-    await router.push(`/disciplina/${id_disciplina.value}`);
-    setTimeout(() => {toast.success("Disciplina atualizada com sucesso!");}, 200);
-  }
-  catch (error)
-  {
-      toast.error(error);
-  }
-}
+    try {
+        // Enviando os dados para o back-end usando axios
+        const response = await axios.post('http://localhost:3000/api/tarefas', tarefaData);
+        
+        // Exibindo uma mensagem de sucesso
+        toast.success('Tarefa criada com sucesso!');
+        console.log(response.data);
+
+        // Redireciona para a página de tarefas após sucesso
+        router.push('/tarefa');
+    } catch (error) {
+        // Exibindo uma mensagem de erro
+        toast.error('Erro ao criar tarefa!');
+        console.error(error);
+    }
+};
+
 </script>
 
 <template>
-  <Back_button path="/disciplinas"/>
-  <H1_T title="Editar Disciplina" />
+    <Back_button path="/tarefa"/>
+    <H1_T title="Editar Tarefa" />
 
-  <form @submit.prevent="handleSubmit">
-    <input type="text" id="id_disciplina" v-model="id_disciplina" hidden>
+    <!-- Botões de seleção para alternar entre os formulários -->
+    <div class="container-large">
+        <div class="multiform">
+            <div
+                :class="{ 'multiform-active': activeForm === 'importFile', 'multiform-disable': activeForm !== 'importFile' }"
+                class="multiform-btn"
+                @click="toggleForm('importFile')"
+            >
+                <ion-icon name="information-circle-outline" class="multiform-icon"></ion-icon>
+                <p>Geral</p>
+            </div>
 
-    <Text_input 
-      label-text="Nome da Disciplina:" 
-      placeholder-text="Nome da Disciplina" 
-      input_id="nome_disciplina" 
-      v-model="nome_disciplina" 
-    />
+            <div
+                :class="{ 'multiform-active': activeForm === 'doManually', 'multiform-disable': activeForm !== 'doManually' }"
+                class="multiform-btn"
+                @click="toggleForm('doManually')"
+            >
+                <ion-icon name="calendar-outline" class="multiform-icon"></ion-icon>
+                <p>Datas</p>
+            </div>
+        </div>
+    </div>
 
-    <Select_input 
-      label-text="Professor Responsável:" 
-      placeholder-text="Professor Responsável:" 
-      input_id="id_professor" 
-      is-required="true"
-      :options-data="professores"
-      pk="ID_Prof"
-      option-field="Nome"
-      v-model="id_professor"  
-    />
+    <!-- Formulário Geral -->
+    <div v-show="activeForm === 'importFile'" class="form_importFile">
+        <H2_T title="Geral" />
+        <form @submit.prevent="handleSubmit">
+            <Text_input
+                label-text="Nome da tarefa:"
+                input_id="Nome_Tarefa"
+                is-required="true"
+                v-model="Nome_Tarefa"
+            />
 
-    <Black_button is-form="true" title="Salvar"/>
-  </form>
+            <Text_area
+                label-text="Descrição da Tarefa"
+                input_id="Cod_Tarefa"
+                is-required="true"
+                v-model="Cod_Tarefa"
+            />
+        </form>
+    </div>
+
+    <!-- Formulário Datas -->
+    <div v-show="activeForm === 'doManually'" class="form_doManually">
+        <H2_T title="Datas" />
+        <form @submit.prevent="handleSubmit">
+            <DateInput 
+                v-model="Date_lancamento" 
+                labelText="Data de Lançamento:"
+            />
+
+            <TimeInput 
+                v-model="Hora_lancamento" 
+                labelText="Horário de Lançamento:"
+            />
+
+            <DateInput 
+                v-model="Date_entrega" 
+                labelText="Data de Entrega:"
+            />
+
+            <TimeInput 
+                v-model="Hora_entrega" 
+                labelText="Horário de Entrega:"
+            />
+
+            <Black_button is-form="true" title="Salvar" />
+        </form>
+    </div>
 </template>
+
+<style scoped>
+    .text-import
+    {
+        text-align: center;
+    }
+</style>

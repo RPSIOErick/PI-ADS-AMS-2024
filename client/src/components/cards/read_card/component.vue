@@ -71,10 +71,7 @@ async function handleDeleteByStatus(linkDelete)
     {
       toast.error(error.response.data.error);
     } 
-    else 
-    {
-      toast.error("Erro ao tentar deletar o registro.");
-    }
+
   }
 }
 </script>

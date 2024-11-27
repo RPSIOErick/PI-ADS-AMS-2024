@@ -48,7 +48,7 @@ import router from '@/router';
 
             updateData(`http://localhost:8080/api/professor/update/${ID_Prof.value}`, dataSend)
 
-            await router.push(`/professor/${ID_Prof.value}`);
+            await router.push(`/professor/`);
             setTimeout(() => {toast.success("Professor atualizado com sucesso!");}, 200);
         }
         catch (error)

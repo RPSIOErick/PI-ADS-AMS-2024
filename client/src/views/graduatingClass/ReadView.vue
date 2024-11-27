@@ -24,7 +24,7 @@
             :itemsData="item" 
             item1="Nome" 
             item2="Turno" 
-            pk="Cod_Aluno" 
+            pk="ID_Turma" 
             linkUpdate="turma"
             linkDelete="turma"
             useStatus="1"

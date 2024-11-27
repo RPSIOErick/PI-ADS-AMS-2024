@@ -1,38 +1,36 @@
 <script setup>
-import { ref, onMounted } from 'vue';
-import { createData, processData, updateData } from '../../../public/js/utils';
-import { tbl_curso } from '@/models/tbl_curso';
+    import { ref, onMounted } from 'vue';
+    import { processData, updateData } from '../../../public/js/utils';
+    import { useRoute } from 'vue-router';
+    import { toast } from 'vue3-toastify';
+    import router from '@/router';
 
-import H1_T from '../../components/text_components/h1_title/component.vue';
+    import { tbl_curso } from '@/models/tbl_curso';
+    import { tbl_aluno } from '@/models/tbl_aluno';
 
-import Text_input from '../../components/inputs/text_inputUpdate/component.vue';
-import Select_input from '../../components/inputs/select_inputUpdate/component.vue';
+    import H1_T from '../../components/text_components/h1_title/component.vue';
+    import Text_input from '../../components/inputs/text_inputUpdate/component.vue';
+    import Select_input from '../../components/inputs/select_inputUpdate/component.vue';
+    import Black_button from '../../components/buttons/black_button/component.vue';
+    import Back_button from '../../components/buttons/back_button/component.vue';
 
-import Black_button from '../../components/buttons/black_button/component.vue';
-import Back_button from '../../components/buttons/back_button/component.vue';
-import { useRoute } from 'vue-router';
-import { tbl_aluno } from '@/models/tbl_aluno';
-import { toast } from 'vue3-toastify';
-import router from '@/router';
 
-const route = useRoute();
+    const route = useRoute();
 
-const estudante = ref({});
-const cursos = ref([]);
-const Cod_Aluno = ref('')
-const Cod_Curso = ref('')
-const Nome = ref('')
-const RA = ref('')
+    const estudante = ref({});
+    const cursos = ref([]);
+    const Cod_Aluno = ref('')
+    const Cod_Curso = ref('')
+    const Nome = ref('')
+    const RA = ref('')
 
 onMounted(async () => 
 {
-
-    let id = window.localStorage.getItem('id')
-
     try
     {
-        cursos.value = await processData("http://localhost:8080/api/curso/read", tbl_curso);
+        let id = window.localStorage.getItem('id')
 
+        cursos.value = await processData("http://localhost:8080/api/curso/read", tbl_curso);
         estudante.value = await processData(`http://localhost:8080/api/aluno/read/${id}`, tbl_aluno);
 
         Cod_Aluno.value = estudante.value.Cod_Aluno; 
@@ -49,6 +47,8 @@ onMounted(async () =>
 
 async function handleSubmit()     
 {
+    let id = window.localStorage.getItem('id')
+
     try 
     {
         const dataSend = 
@@ -59,9 +59,9 @@ async function handleSubmit()
             RA: RA.value,
         };
 
-        updateData(`http://localhost:8080/api/aluno/update/${Cod_Aluno.value}`, dataSend)
+        updateData(`http://localhost:8080/api/aluno/update/${id}`, dataSend)
 
-        await router.push(`/estudante/${Cod_Aluno.value}`);
+        await router.push(`/estudante/`);
         setTimeout(() => {toast.success("Estudante atualizado com sucesso!");}, 200);
     }
     catch (error)
@@ -80,7 +80,7 @@ async function handleSubmit()
 
         <form @submit.prevent="handleSubmit">
 
-            <input type="text" id="ID_Prof" v-model="Cod_Aluno" hidden>
+            <input type="text" id="ID_Prof" v-model="Cod_Aluno" hidden >
 
             <Select_input 
                 v-model="Cod_Curso"

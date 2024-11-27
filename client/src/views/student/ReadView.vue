@@ -21,12 +21,16 @@ import { tbl_disciplinas } from '@/models/tbl_disciplina'
         const user = getUser(token);
         permissions.value = user.permissoes;
 
-        for (const permission of permissions.value) {
-            if (permission === "Coordenador") {
+        for (const permission of permissions.value) 
+        {
+            if (permission === "Coordenador") 
+            {
                 // Carregar cursos e verificar qual pertence ao coordenador
                 const cursos = await processData("http://localhost:8080/api/curso/read", tbl_curso);
-                cursos.forEach((curso) => {
-                    if (curso && curso['ID_Prof'] === user.id) {
+                cursos.forEach((curso) => 
+                {
+                    if (curso && curso['ID_Prof'] === user.id)
+                    {
                         cod_curso.value = curso['Cod_Curso']; // Código do curso do coordenador
                     }
                 });
