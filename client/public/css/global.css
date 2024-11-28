@@ -35,16 +35,6 @@
         min-height: calc(100vh - 4em); 
     }
 
-    /* icone acessibilidade */
-        body .uwy .uai, body .uwy .ulsti{
-            margin-top: -5px!important;
-            margin-right: 8vw;
-        }
-
-        body .uwy.userway_p1 .userway_buttons_wrapper{
-            width: fit-content!important;
-        }
-    
     /*Padrões Input*/
     .container_input
     {
@@ -182,4 +172,38 @@
 /* buttons gerais */
 .btn-read, .btn-verMais, .btn-update, .btn-delete, .create_button, .black_button{
     border: 2px solid var(--color-3)!important;
+}
+
+/* Reposicionando o botão VLibras */
+[vw-access-button] {
+    position: fixed;
+    bottom: -10px; /* Ajuste a posição */
+    left: 20px; /* Pode ser 'right' se necessário */
+    z-index: 1000;
+}
+   
+/* Reposicionando o wrapper principal */
+[vw-plugin-wrapper] {
+    position: fixed;
+    bottom: -70px; /* Ajuste para não sobrepor o botão */
+    left:-5px;
+    z-index: 1000;
+}
+
+/* plugin de acessibilidade */
+.uwy.userway_p1 .userway_buttons_wrapper{
+    top: 18em!important;
+    left: 30px!important;
+    right: 105.9em!important;
+}
+.uwy .uai, body .uwy .ulsti{
+    width: 41px!important;
+    height: 41px!important;
+    border-radius: 8px!important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.uwy .uai, .uwy .ulsti{
+    border-radius: 8px!important;
 }
