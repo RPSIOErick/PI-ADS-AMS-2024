@@ -3,6 +3,8 @@
  .navbar-custom{
     background-color: var(--color-1);
     color: white!important;
+    height: 6.5%;
+    border-bottom: 2px solid var(--color-3);
 }
     /* Icon menu */
         .iconMenu{
@@ -28,9 +30,8 @@
         .offcanvas-header{
             background-color: var(--color-1); 
             box-shadow: 0 0.5vh 1vh rgba(0, 0, 0, 0.3);
-        }
+            border: 2px solid var(--color-3);
 
-        .offcanvas-header{
             height: 7vh;
             font-size: 2vh;
             padding: 0 2vh;
@@ -39,6 +40,11 @@
         .offcanvas-header h5{
             font-size: 2vh;
         }
+
+        .btn-close{
+            border: 2px solid var(--color-3)!important;
+        }
+
 
         /* body */
         .offcanvas-body{

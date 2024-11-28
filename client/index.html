@@ -1,25 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="UTF-8">
     <link rel="icon" href="/favicon.ico">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-     <!--Importação IonIcons-->
-     <script 
-        type="module" 
-        src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js">
-    </script>
-    <script 
-        nomodule 
-        src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js">
-    </script>
+
+    <!--Importação IonIcons-->
+        <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+        <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
     <!--Fim da Importação IonIcons-->
-    
+
     <title>SGTF</title>
-  </head>
-  <body style="background-color:#F2F2F2">
+</head>
+
+<body style="background-color:#F2F2F2">
     <div id="app"></div>
+
+    <!-- plugin de acessibilidade -->
+
+        <script async src="https://cdn.userway.org/widget.js" data-account="KZUGb7OX4z"></script>
+
+        <!-- v-libras -->
+        <div vw class="enabled">
+            <div vw-access-button class="active"></div>
+            <div vw-plugin-wrapper>
+            <div class="vw-plugin-top-wrapper"></div>
+            </div>
+        </div>
+        
+        <script src="https://vlibras.gov.br/app/vlibras-plugin.js">
+        </script>
+
+        <script> new window.VLibras.Widget('https://vlibras.gov.br/app');</script>
+    <!-- (fim) plugin de acessibilidade -->
+
     <script type="module" src="/src/main.js"></script>
-  </body>
+</body>
+
 </html>

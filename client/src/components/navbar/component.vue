@@ -14,22 +14,10 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
-
                 <!-- Título (versão mobile) -->
                 <a class="navbar-brand position-absolute top-50 start-50 translate-middle titleSiteMobile text-white" href="/home">
                     SGTF
                 </a>
-
-                <!-- funções de aumento/redução de font -->
-                <div class="d-flex align-items-center ms-auto d-fonte-ajuste d-none d-md-block">
-                    <!-- Links A+ e A- -->
-                    <div class="d-flex align-items-center me-5 text-white">
-                        <a class="navbar-brand">A+</a>
-                        <a class="navbar-brand">A-</a>
-                    </div>
-                </div>
-
-
 
                 <a href="/login" v-if="!this.$route.params.user">Fazer Login</a>
 
