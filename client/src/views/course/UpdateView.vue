@@ -55,12 +55,12 @@ async function handleSubmit()
       Nome_Curso: Nome_Curso.value, 
       Tipo_Trabalho: Tipo_Trabalho.value, 
       Descricao_Trabalho: Descricao_Trabalho.value,  
-      ID_Prof: ID_Prof.value, 
+      ID_Prof: ID_Prof.value,
       Tipo_Curso: Tipo_Curso.value
     };
     await updateData(`http://localhost:8080/api/curso/update/${Cod_Curso.value}`, dataSend);
 
-    await router.push(`/curso/${Cod_Curso.value}`);
+    await window.location.assign("/cursos");
     setTimeout(() => {toast.success("Curso atualizado com sucesso!");}, 200);
   }
   catch (error)

@@ -72,7 +72,6 @@ router.put('/curso/status/:id', cursoController.changeStatusCurso)
 router.get('/curso/read/:id', cursoController.readUniCurso)
 
 //Routes - Turma
-//Routes - Turma
 router.post('/turma/upload', upload.single('csv'), turmaController.readTurmaFile)
 
 router.post('/turma/create', turmaController.createTurma)
@@ -82,6 +81,8 @@ router.get('/turma/read', turmaController.readTurmas)
 router.get('/turma/read/:id', turmaController.readUniTurma)
 
 router.patch('/turma/update/:id', turmaController.updateTurma);
+
+router.put('/turma/status/:id', turmaController.changeStatusTurma)
 
 //Routes - Auth
 
@@ -110,15 +111,15 @@ router.get('/permissao/read', permissaoController.readPermissao)
 
 //Routes - Tarefas
 
-// router.post('/tarefa/create', tarefasController.createTarefas)
+router.post('/tarefa/create', tarefasController.createTarefa)
 
-// router.get('/tarefa/read', tarefasController.readTarefas)
+router.get('/tarefa/read', tarefasController.readTarefas)
 
-// router.put('/tarefa/update/:id', tarefasController.updateTarefas)
+router.put('/tarefa/update/:id', tarefasController.updateTarefa)
 
-// router.delete('/permissao/delete/:ID_Tarefa', tarefasController.deleteTarefas)
+router.delete('/permissao/status/:ID_Tarefa', tarefasController.changeStatusTarefa)
 
-// router.get('/tarefa/read/:ID_Tarefa', tarefasController.readUniTarefas)
+router.get('/tarefa/read/:ID_Tarefa', tarefasController.readTarefaById)
 
 // Export Module
 module.exports = router;

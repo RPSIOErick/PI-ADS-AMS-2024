@@ -141,7 +141,7 @@ onMounted(async () =>
       <H2_T title="Alunos Importados" />
         <div v-if="alunos.length > 0">
             <div v-for="(aluno, index) in alunos" :key="index">
-                <Text :text="'RA: ' + aluno.Cod_Aluno" /><br>
+                <Text :text="'RA: ' + aluno.RA" /><br>
                 <Text :text="'Nome: ' + aluno.Nome" /><br>
                 <br>
                 

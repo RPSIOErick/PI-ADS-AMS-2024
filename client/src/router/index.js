@@ -248,7 +248,7 @@ const routes =
 },
 {
   path: '/tarefa/criar',
-  name: 'Novo-Curso',
+  name: 'Nova-Tarefa',
   component: () => import('../views/task/CreateView.vue'),
 },
 {

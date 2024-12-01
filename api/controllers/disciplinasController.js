@@ -3,13 +3,13 @@ const Turmas = require('../models/tb_Turmas')
 
 const createDisciplinas = async (req, res) => {
     try {
-        const { ID_Disc, ID_Prof, Nome_Disc, Cod_Curso } = req.body;
+        const { ID_Prof, Nome_Disc, Cod_Curso } = req.body;
         
         // Verificar se os dados estão vindo no body
-        console.log('Dados recebidos:', { ID_Disc, ID_Prof, Nome_Disc, Cod_Curso});
+        console.log('Dados recebidos:', { ID_Prof, Nome_Disc, Cod_Curso});
 
         // Criar a disciplina no banco de dados
-        const disciplinas = await Disciplinas.create({ ID_Disc, ID_Prof, Nome_Disc, Cod_Curso });
+        const disciplinas = await Disciplinas.create({ ID_Prof, Nome_Disc, Cod_Curso });
         
         // Retorna a disciplina criada
         return res.status(201).json(disciplinas);

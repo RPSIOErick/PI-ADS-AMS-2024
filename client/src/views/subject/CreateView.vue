@@ -4,6 +4,7 @@
     import { ref, onMounted} from 'vue'
     import { createData, processData } from '../../../public/js/utils';
     import { tbl_professor } from '@/models/tbl_professor'
+    import { tbl_curso } from '@/models/tbl_curso'
 
     import H1_T from '../../components/text_components/h1_title/component.vue'
     import Text_input from '../../components/inputs/text_input/component.vue'
@@ -14,20 +15,25 @@
     import { toast } from 'vue3-toastify';
 
     const professores = ref([])
-    onMounted(async () => {professores.value = await processData("http://localhost:8080/api/professor/read", tbl_professor)})
+    const cursos = ref([])
+    onMounted(async () => {
+        professores.value = await processData("http://localhost:8080/api/professor/read", tbl_professor)
+        const allCursos = await processData("http://localhost:8080/api/curso/read", tbl_curso);
+        cursos.value = allCursos.filter(curso => curso.Status === true);
+    })
 
-    const id_disciplina = ref('')
     const nome_disciplina = ref('')
     const id_professor = ref('')
+    const Cod_Curso = ref('')
 
     async function handleSubmit() 
     {
         try
         {
             const dataSend = {
-                "ID_Disc": id_disciplina.value,
                 "ID_Prof": id_professor.value,
-                "Nome_Disc": nome_disciplina.value
+                "Nome_Disc": nome_disciplina.value,
+                "Cod_Curso": Cod_Curso.value
             };
             
             createData("http://localhost:8080/api/disciplinas/create", dataSend)
@@ -47,15 +53,6 @@
 
     <form @submit.prevent="handleSubmit">
         <Text_input 
-            label-text="Id da Disciplina:" 
-            placeholder-text="Id da Disciplina" 
-            input_id="id_disciplina" 
-            is-required="true"
-
-            v-model:input_id="id_disciplina"
-        />
-
-        <Text_input 
             label-text="Nome da Disciplina:" 
             placeholder-text="Nome da Disciplina" 
             input_id="nome_disciplina" 
@@ -73,6 +70,16 @@
             :options-data="professores"
             pk="ID_Prof"
             option-field="Nome"
+        />
+        <Select_input
+            v-model:input_id="Cod_Curso"
+            label-text="Curso:"
+            placeholder-text="Escolha um curso disponível..."
+            input_id="Cod_Curso"
+            is-required="true"
+            :options-data="cursos"
+            pk="Cod_Curso"
+            option-field="Nome_Curso"
         />
 
         <Black_button is-form="true" title="Salvar"/>

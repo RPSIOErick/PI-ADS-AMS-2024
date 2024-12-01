@@ -8,7 +8,7 @@
     import { getUser, processData } from '../../../public/js/utils';
     import { tbl_aluno } from '@/models/tbl_aluno';
     import { tbl_curso } from '@/models/tbl_curso';
-import { tbl_disciplinas } from '@/models/tbl_disciplina'
+    import { tbl_disciplinas } from '@/models/tbl_disciplina'
 
     const estudantes = ref([]);
     const cod_curso = ref(''); // Código do curso do coordenador

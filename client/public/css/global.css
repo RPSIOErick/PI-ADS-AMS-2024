@@ -204,6 +204,12 @@
     justify-content: center;
     align-items: center;
 }
+
+body
+{
+    padding-bottom: 2em;
+}
+
 .uwy .uai, .uwy .ulsti{
     border-radius: 8px!important;
 }

@@ -61,11 +61,18 @@
             v-model:input_id="Nome_Curso" 
         />
 
-        <Text_input 
-            label-text="Tipo de Trabalho:" 
-            placeholder-text="Tipo de Trabalho" 
-            input_id="tipo_trabalho" 
+        <Select_input
             v-model:input_id="Tipo_Trabalho" 
+            label-text="Tipo do Trabalho:" 
+            placeholder-text="Escolha o tipo do Trabalho..." 
+            input_id="tipo_trabalho" 
+            pk="tipo_trabalho" 
+            option-field="tipo_trabalho" 
+            :options-data="[
+                {tipo_trabalho: 'Projeto Integrador'},
+                {tipo_trabalho: 'Artigo'},
+                {tipo_trabalho: 'Monografia'}
+            ]"
         />
 
 
@@ -88,11 +95,17 @@
             option-field="Nome"
         />
 
-        <Text_input 
-            label-text="Tipo do Curso:" 
-            placeholder-text="Tipo do Curso" 
-            input_id="tipo_curso" 
+        <Select_input
             v-model:input_id="Tipo_Curso" 
+            label-text="Tipo do Curso:" 
+            placeholder-text="Escolha o tipo do curso..." 
+            input_id="tipo_curso" 
+            pk="tipo_curso" 
+            option-field="tipo_curso" 
+            :options-data="[
+                {tipo_curso: 'Anual'},
+                {tipo_curso: 'Semestral'},
+            ]"
         />
         <Black_button is-form="true" title="Salvar"/>
     </form>

@@ -46,7 +46,7 @@ const handleSubmit = async () => {
 
     try {
         // Enviando os dados para o back-end usando axios
-        const response = await axios.post('http://localhost:3000/api/tarefas', tarefaData);
+        const response = await axios.post('http://localhost:8080/api/tarefa/create', tarefaData);
         
         // Exibindo uma mensagem de sucesso
         toast.success('Tarefa criada com sucesso!');

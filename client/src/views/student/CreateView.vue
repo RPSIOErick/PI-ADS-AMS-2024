@@ -15,94 +15,89 @@ import Select_input from '../../components/inputs/select_input/component.vue';
 import Black_button from '../../components/buttons/black_button/component.vue';
 import Back_button from '../../components/buttons/back_button/component.vue';
 import { toast } from 'vue3-toastify';
-import router from '@/router';
 
 const cursos = ref([]);
 const activeForm = ref('importFile');
 
-onMounted(async () => {cursos.value = await processData("http://localhost:8080/api/curso/read", tbl_curso);});
-function toggleForm(formName) {activeForm.value = formName;}
+onMounted(async () => {
+    // Busca todos os cursos e filtra pelo Status
+    const allCursos = await processData("http://localhost:8080/api/curso/read", tbl_curso);
+    cursos.value = allCursos.filter(curso => curso.Status === true);
+});
 
-const Cod_Curso = ref('')
-const Nome_Aluno = ref('')
-const RA = ref('')
+function toggleForm(formName) {
+    activeForm.value = formName;
+}
 
-async function handleSubmit()
-{
-    try
-    {
-        const dataSend =
-        {
+const Cod_Curso = ref('');
+const Nome_Aluno = ref('');
+const RA = ref('');
+
+async function handleSubmit() {
+    try {
+        const dataSend = {
             "Cod_Curso": Cod_Curso.value,
             "Nome": Nome_Aluno.value,
             "RA": RA.value,
         };
-        createData("http://localhost:8080/api/aluno/create", dataSend)
-
+        await createData("http://localhost:8080/api/aluno/create", dataSend);
         window.location.assign('/estudantes');
-    }
-    catch (error)
-    {
+    } catch (error) {
         toast.error(error);
     }
 }
 
 async function handleSubmitByFile() {
     const formData = new FormData();
-    formData.append('Cod_Curso', Cod_Curso_Aut.value); // Valor do código do curso
+    formData.append('Cod_Curso', Cod_Curso.value); // Código do curso
     formData.append('csv', file_alunos.files[0]); // Arquivo CSV
 
     try {
-        const response = await fetch('http://localhost:8080/api/aluno/upload', {
+        await fetch('http://localhost:8080/api/aluno/upload', {
             method: 'POST',
             body: formData,
         });
 
-
-        const result = await response.json().then(
-           () => window.location.assign('/estudantes')
-        )
+        window.location.assign('/estudantes');
     } catch (error) {
         console.error('Error:', error);
         toast.error(error.message || 'Ocorreu um erro ao enviar o arquivo');
     }
 }
-
 </script>
 
 <style scoped>
-    .text-import
-    {
-        text-align: center;
-    }
+.text-import {
+    text-align: center;
+}
 </style>
+
 <template>
-    <Back_button path="/estudantes"/>
+    <Back_button path="/estudantes" />
     <H1_T title="Criar Aluno(s)" />
 
     <!-- Botões de seleção para alternar entre os formulários -->
     <div class="container-large">
         <div class="multiform">
-        <div
-            :class="{ 'multiform-active': activeForm === 'importFile', 'multiform-disable': activeForm !== 'importFile' }"
-            class="multiform-btn"
-            @click="toggleForm('importFile')"
-        >
-            <ion-icon name="document-text-outline" class="multiform-icon"></ion-icon>
-            <p>Importar Arquivo</p>
-        </div>
+            <div
+                :class="{ 'multiform-active': activeForm === 'importFile', 'multiform-disable': activeForm !== 'importFile' }"
+                class="multiform-btn"
+                @click="toggleForm('importFile')"
+            >
+                <ion-icon name="document-text-outline" class="multiform-icon"></ion-icon>
+                <p>Importar Arquivo</p>
+            </div>
 
-        <div
-            :class="{ 'multiform-active': activeForm === 'doManually', 'multiform-disable': activeForm !== 'doManually' }"
-            class="multiform-btn"
-            @click="toggleForm('doManually')"
-        >
-            <ion-icon name="person-add-outline" class="multiform-icon"></ion-icon>
-            <p>Cadastrar Manualmente</p>
+            <div
+                :class="{ 'multiform-active': activeForm === 'doManually', 'multiform-disable': activeForm !== 'doManually' }"
+                class="multiform-btn"
+                @click="toggleForm('doManually')"
+            >
+                <ion-icon name="person-add-outline" class="multiform-icon"></ion-icon>
+                <p>Cadastrar Manualmente</p>
+            </div>
         </div>
     </div>
-    </div>
-
 
     <!-- Div Importar Arquivo -->
     <div v-show="activeForm === 'importFile'" class="form_importFile">
@@ -114,17 +109,19 @@ async function handleSubmitByFile() {
         </div>
 
         <form @submit.prevent="handleSubmitByFile">
-            <Text_input
-                v-model="Cod_Curso_Aut"
-                label-text="Código do Curso"
-                placeholder-text="Digite o código do curso"
-                input_id="Cod_Curso_Aut"
+            <Select_input
+                v-model:input_id="Cod_Curso"
+                label-text="Curso:"
+                placeholder-text="Escolha um curso disponível..."
+                input_id="Cod_Curso"
                 is-required="true"
+                :options-data="cursos"
+                pk="Cod_Curso"
+                option-field="Nome_Curso"
             />
-            <File_input input_id="file_alunos" @change="handleFileChange" />
+            <File_input input_id="file_alunos" />
             <Black_button is-form="true" title="Salvar" />
         </form>
-
     </div>
 
     <!-- Div Cadastrar Manualmente -->

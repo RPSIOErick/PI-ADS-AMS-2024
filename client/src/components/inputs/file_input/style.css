@@ -38,3 +38,12 @@
     /*Visibility*/
         display: none;
 }
+
+.file_name {
+    margin-top: 8px;
+    font-size: 14px;
+    color: #555;
+    word-wrap: break-word;
+
+    text-align: justify;
+}

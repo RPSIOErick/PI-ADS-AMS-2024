@@ -33,6 +33,12 @@ onMounted(async () => {
             // Filtrar cursos para exibir apenas o do coordenador
             cursos.value = allCursos.filter(curso => curso['Cod_Curso'] === cod_curso.value);
         }
+        else if (permission === "Administrador") {
+
+            // Exibir todos os cursos
+            cursos.value = allCursos;
+
+        }
     });
 });
 </script>

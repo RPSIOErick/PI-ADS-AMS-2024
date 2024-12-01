@@ -38,6 +38,9 @@
                     }
                 });
             }
+            else if (permission == "Administrador") {
+                cod_curso.value = '0'; // Código do curso do administrador
+            }
         });
 
         // Carregar disciplinas do curso 0
@@ -56,7 +59,7 @@
         :key="index" 
         :itemsData="item" 
         item1="Nome_Disc" 
-        item2="ID_Disc" 
+        item2="ID_Disc"
         pk="ID_Disc" 
         link-update="disciplina"
         link-delete="disciplinas"

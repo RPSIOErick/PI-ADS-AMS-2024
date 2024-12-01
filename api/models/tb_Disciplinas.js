@@ -17,7 +17,14 @@ const Disciplinas = sq.define('Disciplinas', {
     Nome_Disc: {
         type: DataTypes.STRING,
         allowNull: false,
-    }
+    },
+    Cod_Curso: {
+        type: DataTypes.INTEGER,
+        references: {
+            model: 'tb_Cursos',
+            key: 'Cod_Curso',
+        }
+    },
 }, {
     tableName: 'tb_Disciplinas',
     timestamps: false

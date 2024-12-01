@@ -11,10 +11,6 @@ const Turmas = sq.define('Turmas', {
         type: DataTypes.STRING,
         allowNull: false,
     },
-    Responsavel: {
-        type: DataTypes.STRING,
-        allowNull: false,
-    },
     Turno: {
         type: DataTypes.STRING,
         allowNull: false,
