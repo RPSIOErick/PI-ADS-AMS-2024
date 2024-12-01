@@ -41,7 +41,7 @@ const readTurmaFile = async (req, res) => {
                 // Simula uma requisição ao método createAluno
                 const reqSimulado = {
                     body: {
-                        Cod_Curso: 101, //
+                        Cod_Curso: req.body.Cod_Curso,
                         Nome: aluno.Nome,
                         RA: aluno.RA
                     }
@@ -174,28 +174,6 @@ const updateTurma = async (req, res) => {
     }
 }
 
-const changeStatusTurma = async (req, res) => {
-    try {
-        const { id } = req.params; // ID da turma que será excluído
-
-        // Verificar se o curso existe no banco
-        const turma = await Turmas.findByPk(id);
-        if (!turma) {
-            return res.status(404).json({ error: "Turma não encontrada." });
-        }
-
-        // Arquivar o curso
-        const turmaStatus = !turma.Status
-        await turma.update({ Status: turmaStatus });
-
-        // Retorna uma mensagem de sucesso
-        res.json({ message: "Turma alterada com sucesso!" });
-    } catch (error) {
-        console.error("Erro ao excluir turma: ", error);
-        res.status(500).json({ error: "Erro ao excluir turma." });
-    }
-};
-
 const removeAluno = async (id, array) => {
 
     try {
@@ -284,6 +262,28 @@ async function createInscricao (Cod_Aluno, ID_Turma) {
     }
 
 }
+
+const changeStatusTurma = async (req, res) => {
+    try {
+        const { id } = req.params; // ID da turma que será excluído
+
+        // Verificar se o curso existe no banco
+        const turma = await Turmas.findByPk(id);
+        if (!turma) {
+            return res.status(404).json({ error: "Turma não encontrada." });
+        }
+
+        // Arquivar o curso
+        const turmaStatus = !turma.Status
+        await turma.update({ Status: turmaStatus });
+
+        // Retorna uma mensagem de sucesso
+        res.json({ message: "Turma alterada com sucesso!" });
+    } catch (error) {
+        console.error("Erro ao excluir turma: ", error);
+        res.status(500).json({ error: "Erro ao excluir turma." });
+    }
+};
 
 module.exports = {
     readTurmaFile,
