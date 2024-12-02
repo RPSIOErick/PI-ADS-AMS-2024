@@ -1,0 +1,74 @@
+ /* navbar */
+
+ .navbar-custom{
+    background-color: var(--color-1);
+    color: white!important;
+    height: 6.5%;
+    border-bottom: 2px solid var(--color-3);
+}
+    /* Icon menu */
+        .iconMenu{
+            padding: 0.8vh 1.4vh;
+            border-radius: 0.5vh;
+            border: 0.1vh solid var(--color-3);
+        }
+
+        .navbar-toggler-icon {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cpath stroke='rgba%28255, 255, 255, 1%29' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E"); /* Ícone branco */
+        }
+
+        .iconMenu span{
+            font-size: 1.6vh;
+        }
+
+    /* menu aberto */
+        .offcanvas{
+            width: 70%!important;
+        }
+            
+        /* header */
+        .offcanvas-header{
+            background-color: var(--color-1); 
+            box-shadow: 0 0.5vh 1vh rgba(0, 0, 0, 0.3);
+            border: 2px solid var(--color-3);
+
+            height: 7vh;
+            font-size: 2vh;
+            padding: 0 2vh;
+        }
+
+        .offcanvas-header h5{
+            font-size: 2vh;
+        }
+
+        .btn-close{
+            border: 2px solid var(--color-3)!important;
+        }
+
+
+        /* body */
+        .offcanvas-body{
+            font-size: 1.2vw;
+        }   
+
+        .nav-item:hover{
+            font-weight: 600;
+        }
+
+        .nav-item a{
+            font-size: 2vh;
+        
+        }
+    /* Title */
+        .titleSiteMobile{
+            display: block;
+            font-size: 2.3vh!important;
+            color: var(--color-3);
+        }
+    
+    /* Icon Profile */
+        .icon-profile {
+            color: var(--color-3);
+            font-size: 5.5vh;
+        }
+/* (fim) navbar */

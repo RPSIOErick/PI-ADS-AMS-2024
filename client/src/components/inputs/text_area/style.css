@@ -1,0 +1,30 @@
+.textarea_label
+{
+    /*Text*/
+        font-family: "Lato", sans-serif;
+        font-size: var(--px-20);
+        font-weight: bold;
+}
+.text_area
+{
+    /*Text*/
+        font-family: "Lato", sans-serif;
+        font-size: var(--px-20);
+
+    /*Background*/
+        background-color: var(--color-3);
+        
+    /*Size*/
+        field-sizing: content;
+        width: 100%;
+        min-height: 9.75em;
+        resize: none;
+
+    /*Border*/
+        border: 0;
+        border-radius: 1em;
+        box-shadow: var(--shadow-figma);
+
+    /*Padding*/
+        padding: 1em;
+}

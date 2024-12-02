@@ -1,0 +1,15 @@
+.container_h2_title
+{
+    /*Position*/
+        padding-top: 0.25em;
+        padding-bottom: 0.25em;
+}
+.h2_title
+{
+   /*Text*/        
+        font-family: "Lato", sans-serif;
+        font-size: var(--px-23); 
+        font-weight: bold;
+        text-align: center;
+        text-transform: uppercase;
+}
