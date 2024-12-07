@@ -6,7 +6,6 @@ import Back_button from '../../components/buttons/back_button/component.vue'
 import { ref } from 'vue';
 import { createData } from '../../../public/js/utils';
 import { toast } from 'vue3-toastify';
-import router from '@/router';
 
 const Nome_Prof = ref('');
 const rm = ref('');
@@ -18,13 +17,13 @@ const roleOptions = ["Administrador", "Responsável", "Orientador", "Coordenador
 async function handleSubmit() {
     try {
         const dataSend = {
-            "Nome": Nome_Prof.value,
-            "RM": rm.value,
+            "name": Nome_Prof.value,
+            "rm": rm.value,
             "password": password.value,
             "roles": roles.value
         };
 
-        createData("http://localhost:8080/api/professor/create", dataSend);
+        createData("http://localhost:8080/api/professor/register", dataSend);
         window.location.assign('/professores');
     } catch (error) {
         toast.error(error);
@@ -42,14 +41,15 @@ async function handleSubmit() {
             placeholder-text="Nome do Professor" 
             input_id="Nome_Prof"
             is-required="true"
-            v-model:input_id="Nome_Prof"
+            v-model="Nome_Prof"
         />
+        
         <Text_input 
             label-text="Registro de Matricula (RM):" 
             placeholder-text="Registro de Matricula (RM)" 
             input_id="rm"
             is-required="true"
-            v-model:input_id="rm"
+            v-model="rm"
         />
 
         <!-- Checkboxes para os papéis -->

@@ -121,5 +121,7 @@ router.delete('/permissao/status/:ID_Tarefa', tarefasController.changeStatusTare
 
 router.get('/tarefa/read/:ID_Tarefa', tarefasController.readTarefaById)
 
+router.delete('/tarefa/delete/:ID_Tarefa', tarefasController.deleteTarefas)
+
 // Export Module
 module.exports = router;

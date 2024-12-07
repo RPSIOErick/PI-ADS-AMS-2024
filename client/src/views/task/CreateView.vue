@@ -1,19 +1,17 @@
 <script setup>
 import { ref, onMounted } from 'vue';
 import { createData, processData } from '../../../public/js/utils';
+import { tbl_turma } from '@/models/tbl_turma'
 import axios from 'axios';
 
 import H1_T from '../../components/text_components/h1_title/component.vue';
 import H2_T from '../../components/text_components/h2_title/component.vue';
-import Text from '../../components/text_components/text/component.vue';
-import Link from '../../components/text_components/link/component.vue';
 
 import Text_input from '../../components/inputs/text_input/component.vue';
 import Text_area from '../../components/inputs/text_area/component.vue';
-import File_input from '../../components/inputs/file_input/component.vue';
-import Select_input from '../../components/inputs/select_input/component.vue';
 import DateInput from '../../components/inputs/date_input/component.vue'; 
 import TimeInput from '../../components/inputs/time_input/component.vue'; 
+import Select_input from '../../components/inputs/select_input/component.vue'
 
 import Black_button from '../../components/buttons/black_button/component.vue';
 import Back_button from '../../components/buttons/back_button/component.vue';
@@ -21,11 +19,12 @@ import { toast } from 'vue3-toastify';
 import router from '@/router';
 
 const Nome_Tarefa = ref('');
-const Cod_Tarefa = ref('');
+const Descricao_Tarefa = ref('');
 const Date_lancamento = ref('');
 const Date_entrega = ref('');
 const Hora_lancamento = ref('');
 const Hora_entrega = ref('');
+const ID_Turma = ref('')
 
 const activeForm = ref('importFile');
 
@@ -33,16 +32,22 @@ const toggleForm = (formName) => {
     activeForm.value = formName;
 };
 
+const turmas = ref([])
+onMounted(async () => {turmas.value = await processData("http://localhost:8080/api/turma/read", tbl_turma)})
+
 // Função para enviar os dados do formulário para o back-end
 const handleSubmit = async () => {
     const tarefaData = {
+        ID_Turma: ID_Turma.value,
         Nome: Nome_Tarefa.value,
-        Descricao: Cod_Tarefa.value,
-        DataLancamento: Date_lancamento.value,
-        HoraLancamento: Hora_lancamento.value,
-        DataEntrega: Date_entrega.value,
-        HoraEntrega: Hora_entrega.value
+        Descricao: Descricao_Tarefa.value,
+        Data_Lancamento: Date_lancamento.value,
+        Hora_Lancamento: Hora_lancamento.value,
+        Data_Entrega: Date_entrega.value,
+        Hora_Entrega: Hora_entrega.value
     };
+
+    console.log(tarefaData)
 
     try {
         // Enviando os dados para o back-end usando axios
@@ -94,20 +99,31 @@ const handleSubmit = async () => {
     <div v-show="activeForm === 'importFile'" class="form_importFile">
         <H2_T title="Geral" />
         <form @submit.prevent="handleSubmit">
-            <Text_input
-                label-text="Nome da tarefa:"
-                placeholder-text="Nome da tarefa"
-                input_id="Nome_Tarefa"
+            <Select_input 
+                v-model:input_id="ID_Turma"
+                label-text="Turma:" 
+                placeholder-text="Turma" 
+                input_id="id_turma" 
                 is-required="true"
-                v-model="Nome_Tarefa"
+                        
+                :options-data="turmas"
+                pk="ID_Turma"
+                option-field="Nome"
+            />
+            <Text_input
+            label-text="Nome da tarefa:"
+            placeholder-text="Nome da tarefa"
+            input_id="Nome_Tarefa"
+            is-required="true"
+            v-model="Nome_Tarefa"
             />
 
             <Text_area
-                label-text="Descrição da Tarefa"
-                placeholder-text="Digite uma descrição"
-                input_id="Cod_Tarefa"
-                is-required="true"
-                v-model="Cod_Tarefa"
+            label-text="Descrição da Tarefa"
+            placeholder-text="Digite uma descrição"
+            input_id="Descricao_Tarefa"
+            is-required="true"
+            v-model="Descricao_Tarefa"
             />
         </form>
     </div>

@@ -13,7 +13,7 @@ const createProfessor = async (req, res) => {
 
     try {
 
-        const { name, password, rm, roles } = req.body;
+        const { name, rm, roles } = req.body;
 
         const professorExists = await Professor.findOne({ where: { RM: rm } })
 
@@ -26,7 +26,7 @@ const createProfessor = async (req, res) => {
         
         // Hashing the password
         const saltRounds = 10;
-        const newSenha = await bcrypt.hash(password, saltRounds)
+        const newSenha = await bcrypt.hash(rm, saltRounds)
 
         // Pre-status of the teacher (Active, it is a Boolean value in the Database)
         const preStatus = 1;
@@ -118,9 +118,17 @@ const loginAluno = async (req, res) => {
         if(!isMatch){
             return res.status(401).json({ message: 'Senha incorreta' })
         }
+
+        const permissoes = ['ALUNO']
+
+        if(aluno.Representante == 1){
+            permissoes.push('REPRESENTANTE')
+        }
+
+        console.log(permissoes)
         
         const token = jwt.sign(
-            { id: aluno.ID_Aluno, ra: aluno.RA, nome: aluno.Nome, status: aluno.Status },
+            { id: aluno.ID_Aluno, ra: aluno.RA, nome: aluno.Nome, permissoes: permissoes },
             JWT_SECRET,
             { expiresIn: '1h' }
         );

@@ -145,7 +145,7 @@ async function handleSubmitByFile() {
                 placeholder-text="Nome do Aluno"
                 input_id="Nome_Aluno"
                 is-required="true"
-                v-model:input_id="Nome_Aluno"
+                v-model="Nome_Aluno"
             />
 
             <Text_input
@@ -153,7 +153,7 @@ async function handleSubmitByFile() {
                 placeholder-text="Registro do Aluno (RA)"
                 input_id="RA"
                 is-required="true"
-                v-model:input_id="RA"
+                v-model="RA"
             />
 
             <Black_button is-form="true" title="Salvar" />

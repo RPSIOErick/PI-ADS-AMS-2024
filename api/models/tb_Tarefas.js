@@ -30,6 +30,10 @@ const Tarefas = sq.define('Tarefas', {
     Hora_Entrega: {
         type: DataTypes.TIME, 
         allowNull: false,
+    },
+    Entregue: {
+        type: DataTypes.BOOLEAN,
+        allowNull: false,   
     }
 }, {
     tableName: 'tb_Tarefas',

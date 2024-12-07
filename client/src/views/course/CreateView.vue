@@ -53,12 +53,20 @@
 
     <form @submit.prevent="handleSubmit">
 
-        <Text_input 
+        <!-- <Text_input 
             label-text="Nome do Curso:" 
             placeholder-text="Nome do Curso" 
             is-required="true"
             input_id="nome_curso" 
             v-model:input_id="Nome_Curso" 
+        /> -->
+
+        <Text_input
+            label-text="Nome do Curso:"
+            placeholder-text="Nome do Curso"
+            input_id="nome_cursor"
+            is-required="true"
+            v-model="Nome_Curso"
         />
 
         <Select_input
@@ -76,11 +84,19 @@
         />
 
 
-        <Text_input 
+        <!-- <Text_input 
             label-text="Descrição do Trabalho:" 
             placeholder-text="Descrição do Trabalho" 
             input_id="descricao_trabalho"
             v-model:input_id="Descricao_Trabalho" 
+        /> -->
+
+        <Text_input
+            label-text="Descrição do Trabalho"
+            placeholder-text="Descrição do Trabalho"
+            input_id="descricao_trabalho"
+            is-required="true"
+            v-model="Descricao_Trabalho"
         />
 
         <Select_input 

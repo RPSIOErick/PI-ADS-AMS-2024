@@ -77,26 +77,50 @@ async function handleSubmit()
   <form @submit.prevent="handleSubmit">
     <input type="text" id="cod_curso" v-model="Cod_Curso" hidden>
 
-    <Text_input 
+    <!-- <Text_input 
       label-text="Nome do Curso:" 
       placeholder-text="Nome do Curso" 
       input_id="nome_curso" 
       v-model="Nome_Curso" 
+    /> -->
+
+    <Text_input
+        label-text="Nome do Curso:"
+        placeholder-text="Nome do Curso"
+        input_id="nome_curso"
+        is-required="true"
+        v-model="Nome_Curso"
     />
 
-    <Text_input 
+    <!-- <Text_input 
       label-text="Tipo de Trabalho:" 
       placeholder-text="Tipo de Trabalho" 
       input_id="tipo_trabalho" 
       v-model="Tipo_Trabalho" 
     />
+     -->
+    <Text_input
+        label-text="Tipo de Trabalho:"
+        placeholder-text="Tipo de Trabalho"
+        input_id="tipo_trabalho"
+        is-required="true"
+        v-model="Tipo_Trabalho"
+    />
 
 
-    <Text_input 
-      label-text="Descrição do Trabalho:" 
-      placeholder-text="Descrição do Trabalho" 
-      input_id="descricao_trabalho"
-      v-model="Descricao_Trabalho" 
+    <!-- <Text_input 
+    label-text="Descrição do Trabalho:" 
+    placeholder-text="Descrição do Trabalho" 
+    input_id="descricao_trabalho"
+    v-model="Descricao_Trabalho" 
+    /> -->
+    
+    <Text_input
+        label-text="Descrição do Trabalho:"
+        placeholder-text="Descrição do Trabalho"
+        input_id="descruca_trabalho"
+        is-required="true"
+        v-model="Descricao_Trabalho"
     />
 
     <Select_input 
@@ -110,11 +134,19 @@ async function handleSubmit()
       v-model="ID_Prof"  
     />
 
-    <Text_input 
+    <!-- <Text_input 
       label-text="Tipo do Curso:" 
       placeholder-text="Tipo do Curso" 
       input_id="tipo_curso" 
       v-model="Tipo_Curso" 
+    /> -->
+
+    <Text_input
+        label-text="Tipo do Curso:"
+        placeholder-text="Tipo do Curso"
+        input_id="tipo_curso"
+        is-required="true"
+        v-model="Tipo_Curso"
     />
 
     <Black_button is-form="true" title="Salvar"/>

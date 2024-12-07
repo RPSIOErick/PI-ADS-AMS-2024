@@ -164,7 +164,7 @@ onMounted(async () =>
                 placeholder-text="Nome da Turma"
                 input_id="Nome"
                 is-required="true"
-                v-model:input_id="nomeTurma"
+                v-model="nomeTurma"
             />
 
           <Select_input

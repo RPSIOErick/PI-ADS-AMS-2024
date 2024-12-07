@@ -192,31 +192,6 @@ const removeAluno = async (id, array) => {
 
 }
 
-const addAluno = async (req) => {
-    try {
-        const id = req.params.id;
-        const { Nome, Turno, Semestre, Ano, Disciplina, alunoAddArray, Status } = req.body;
-
-        // Realizando upsert para cada aluno
-        await Promise.all(alunoAddArray.map(Cod_Aluno => {
-            return Turmas.upsert({
-                Cod_Aluno,      
-                ID_Disc: id,  
-                Nome,        
-                Turno,       
-                Semestre,   
-                Ano,
-                Status
-            });
-        }));
-
-    } catch (error) {
-        console.error(error);
-        res.status(500).json({ error: 'Something went wrong' });
-    }
-}
-
-
 const deleteTurma = async (req, res) => {
 
     try

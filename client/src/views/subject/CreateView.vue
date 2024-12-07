@@ -58,7 +58,7 @@
             input_id="nome_disciplina" 
             is-required="true"
 
-            v-model:input_id="nome_disciplina"
+            v-model="nome_disciplina"
         />
         <Select_input 
             v-model:input_id="id_professor"

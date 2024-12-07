@@ -7,6 +7,8 @@ const Professor = require('./tb_Professor');
 const Tipo_Prof = require('./tb_Tipo_Prof');
 const Turmas = require('./tb_Turmas');
 const Inscricao = require('./tb_Inscricao');
+const Tarefa = require('./tb_Tarefas');
+const TransicaoTarefa = require('./tb_Transicao_Tarefas');
 
 // Async function to sync tables
 async function syncTables() {
@@ -34,9 +36,18 @@ async function syncTables() {
 
         await Inscricao.sync();
         console.log("Tabela tb_inscricao criada com sucesso!")
+
+        await Tarefa.sync();
+        console.log("Tabela tb_Tarefa criada com sucesso!")
+
+        await TransicaoTarefa.sync();
+        console.log("Tabela tb_Transicao_Tarefas criada com sucesso!")
+
     } catch (error) {
         console.error("Erro ao sincronizar tabelas: ", error);
     }
+    
+    
 }
 
 // Sync funcion

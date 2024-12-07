@@ -1,17 +1,18 @@
 <script setup>
-  import { ref, defineEmits, watch } from 'vue';
+import { defineProps, defineEmits } from 'vue';
 
-  const props = defineProps(['input_id', 'labelText', 'placeholderText', 'isRequired']);
-  const emit = defineEmits(['update:input_id']);
-  const localInputId = ref('')
-  watch(localInputId, (newValue) => 
-  {
-    emit('update:input_id', newValue);
-  });
-  
+// Props para receber o valor do input e outras configurações
+const props = defineProps({
+  modelValue: String, // Para suporte ao v-model
+  input_id: String,
+  labelText: String,
+  placeholderText: String,
+  isRequired: Boolean,
+});
+
+// Emissor de eventos para atualizar o valor do v-model
+const emit = defineEmits(['update:modelValue']);
 </script>
-
-<style src="./style.css"></style>
 
 <template>
   <div class="container_input">
@@ -20,8 +21,11 @@
       class="text_input" 
       :id="input_id" 
       :placeholder="placeholderText" 
-      v-model="localInputId" 
       :required="isRequired" 
+      :value="modelValue" 
+      @input="$emit('update:modelValue', $event.target.value)"
     />
   </div>
 </template>
+
+<style src="./style.css"></style>

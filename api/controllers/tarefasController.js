@@ -1,27 +1,63 @@
-const Tarefa = require('../models/tb_Tarefas'); // Modelo da tabela de tarefas
+const Tarefa = require('../models/tb_Tarefas');
+const TransicaoTarefas = require('../models/tb_Transicao_Tarefas');
 
 // Criar uma nova tarefa
 const createTarefa = async (req, res) => {
     try {
-        const { Nome, Descricao, DataLancamento, HoraLancamento, DataEntrega, HoraEntrega } = req.body;
+        const { ID_Turma, Nome, Descricao, Data_Lancamento, Hora_Lancamento, Data_Entrega, Hora_Entrega } = req.body;
+
+        // Pré-Status
+        const preStatus = 0;
 
         // Criar a tarefa no banco de dados
         const tarefa = await Tarefa.create({
             Nome,
             Descricao,
-            DataLancamento,
-            HoraLancamento,
-            DataEntrega,
-            HoraEntrega
+            Data_Lancamento,
+            Hora_Lancamento,
+            Data_Entrega,
+            Hora_Entrega,
+            Entregue: preStatus
         });
 
+        if(!tarefa){
+
+            return res.status(500).json({ error: "Erro ao criar tarefa." });
+
+        }
+
+        // Criar a transição da tarefa
+        await craeteTransicaoTarefa(tarefa.ID_Tarefa, ID_Turma);
+
         // Retorna a tarefa criada
-        res.status(201).json(tarefa);
+        return res.status(201).json(tarefa);
     } catch (error) {
         console.error('Erro ao criar tarefa:', error);
         res.status(500).json({ error: "Erro ao criar tarefa." });
     }
 };
+
+async function craeteTransicaoTarefa(ID_Tarefa, ID_Turma) {
+
+    try {
+
+        const transicao = await TransicaoTarefas.create({
+            ID_Tarefa,
+            ID_Turma
+        })
+
+        if(!transicao) {
+            return res.status(500).json({ error: "Erro ao criar a transição da tarefa." });
+        }
+
+    }
+
+    catch (err) {
+        console.error('Erro ao criar transição da tarefa:', err);
+        res.status(500).json({ error: "Erro ao criar transição da tarefa." });
+    }
+
+}
 
 // Ler todas as tarefas
 const readTarefas = async (req, res) => {
@@ -61,7 +97,7 @@ const readTarefaById = async (req, res) => {
 const updateTarefa = async (req, res) => {
     try {
         const { id } = req.params;
-        const { Nome, Descricao, DataLancamento, HoraLancamento, DataEntrega, HoraEntrega } = req.body;
+        const { Nome, Descricao, Data_Lancamento, Hora_Lancamento, Data_Entrega, Hora_Entrega } = req.body;
 
         // Busca a tarefa pelo ID
         const tarefa = await Tarefa.findByPk(id);
@@ -71,7 +107,7 @@ const updateTarefa = async (req, res) => {
         }
 
         // Atualiza os dados da tarefa
-        await tarefa.update({ Nome, Descricao, DataLancamento, HoraLancamento, DataEntrega, HoraEntrega });
+        await tarefa.update({ Nome, Descricao, Data_Lancamento, Hora_Lancamento, Data_Entrega, Hora_Entrega });
 
         // Retorna a tarefa atualizada
         res.status(200).json({ message: "Tarefa atualizada com sucesso!", tarefa });
@@ -81,7 +117,7 @@ const updateTarefa = async (req, res) => {
     }
 };
 
-// Alterar o status de uma tarefa (exemplo: concluída ou pendente)
+// Alterar o status de uma tarefa
 const changeStatusTarefa = async (req, res) => {
     try {
         const { id } = req.params;
@@ -93,7 +129,7 @@ const changeStatusTarefa = async (req, res) => {
             return res.status(404).json({ error: "Tarefa não encontrada." });
         }
 
-        // Alterna o status (exemplo: ativa ou arquivada)
+        // Alterna o status
         const novoStatus = !tarefa.Status;
         await tarefa.update({ Status: novoStatus });
 
@@ -105,10 +141,32 @@ const changeStatusTarefa = async (req, res) => {
     }
 };
 
+// Excluir uma tarefa
+const deleteTarefas = async (req, res) => {
+    try {
+        const { ID_Tarefa } = req.params;
+
+        // Verificar se a tarefa existe
+        const tarefa = await Tarefa.findByPk(ID_Tarefa);
+        if (!tarefa) {
+            return res.status(404).json({ error: "Tarefa não encontrada." });
+        }
+
+        // Excluir a tarefa
+        await tarefa.destroy();
+
+        res.json({ message: "Tarefa excluída com sucesso!" });
+    } catch (error) {
+        console.error("Erro ao excluir tarefa: ", error);
+        res.status(500).json({ error: "Erro ao excluir tarefa." });
+    }
+};
+
 module.exports = {
     createTarefa,
     readTarefas,
     readTarefaById,
     updateTarefa,
-    changeStatusTarefa
+    changeStatusTarefa,
+    deleteTarefas,
 };
